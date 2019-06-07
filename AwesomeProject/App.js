@@ -21,6 +21,16 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
 
+  componentDidMount() {
+    this.messageListener = firebase.messaging().onMessage((message) => {
+          alert(message);
+      });
+    }
+  
+    componentWillUnmount(){
+        this.messageListener();
+    }
+
   render() {
     return (
       <View style={styles.container}>
@@ -38,16 +48,6 @@ export default class App extends Component<Props> {
       }
 
       }}> </Button>
-      
-    componentDidMount() {
-      this.messageListener = firebase.messaging().onMessage((message) => {
-            alert(message);
-        });
-      }
-    
-      componentWillUnmount(){
-          this.messageListener();
-      }
       </View>
     );
   }
