@@ -9,26 +9,19 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import firebase from 'react-native-firebase';
-import type, { RemoteMessage } from 'react-native-firebase';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
 
   componentDidMount() {
-    this.messageListener = firebase.messaging().onMessage((message) => {
-          alert(message);
-      });
-    }
+    this.removeNotificationListener = firebase.notifications().onNotification((notification)=> {
+      // Process your notification as required
+      alert(notification.body)
+  });
+}
+
   
     componentWillUnmount(){
-        this.messageListener();
+        this.removeNotificationListener();
     }
 
   render() {

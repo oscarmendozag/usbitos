@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; // <-- Add this line
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; // <-- Add this line
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new RNFirebasePackage(),
-            new RNFirebaseMessagingPackage()
+            new RNFirebaseMessagingPackage(),
+            new RNFirebaseNotificationsPackage() // <-- Add this line
       );
     }
 
